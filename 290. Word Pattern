@@ -1,0 +1,35 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        int n = s.split(" ").length;
+        if(n!=pattern.length()) return false;
+        boolean flag = true;
+        List<String> list = new ArrayList<>();
+        HashMap<Character, String> map = new HashMap<>();
+        int i=0;
+        for(String word: s.split(" ")){
+            if(map.containsKey(pattern.charAt(i))){
+                System.out.println(word+" "+pattern.charAt(i));
+                if(!word.equals(map.get(pattern.charAt(i)))){
+                    return false;
+                }
+                else{
+                    System.out.println(word+" "+pattern.charAt(i));
+                    i++;
+                    continue;
+                }
+            }
+            else{
+                System.out.println(word+" "+pattern.charAt(i));
+                if(list.contains(word)){
+                    return false;
+                }
+                map.put(pattern.charAt(i), word);
+                list.add(word);
+                i++;
+            }
+            
+        }
+        
+        return flag;
+    }
+}
