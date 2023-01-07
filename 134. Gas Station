@@ -1,0 +1,18 @@
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int sum_gas = Arrays.stream(gas).sum();
+        int sum_cost = Arrays.stream(cost).sum();
+        //Base Case
+        if(sum_gas<sum_cost) return -1;
+        int start_index = 0;
+        int car_tank=0;
+        for(int i=0;i<gas.length;i++){
+           car_tank+=gas[i]-cost[i];
+           if(car_tank<0){
+               start_index=i+1;
+               car_tank=0;
+           }
+        }
+        return start_index;
+    }
+}
