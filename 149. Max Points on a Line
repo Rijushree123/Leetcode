@@ -1,0 +1,25 @@
+class Solution {
+    public int maxPoints(int[][] points) {
+        int n = points.length;
+        int max = 0;
+
+        if(n<3) return n;
+
+        for(int[] point: points){
+            HashMap<Double, Integer> map = new HashMap<>();
+            for(int p[]: points){
+                double slope = 0;
+                if(p==point) continue;
+                if(p[0]==point[0]) slope = Double.POSITIVE_INFINITY;
+                else{
+                    slope = (double)(p[1]-point[1])/(p[0]-point[0]);
+                }
+                map.put(slope,map.getOrDefault(slope, 0)+1);
+                if(map.get(slope)>max)
+                    max = map.get(slope);
+            }
+        }
+
+        return max+1;
+    }
+}
